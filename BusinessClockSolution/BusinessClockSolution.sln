@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessClockApi", "BusinessClockApi\BusinessClockApi.csproj", "{2562992A-8295-4232-AD18-70EEFD75D6B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessClockApi", "BusinessClockApi\BusinessClockApi.csproj", "{2562992A-8295-4232-AD18-70EEFD75D6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessClock.IntegrationTests", "BusinessClock.IntegrationTests\BusinessClock.IntegrationTests.csproj", "{D474CEA3-D84A-4E22-B940-BDCC58468026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessClock.IntegrationTests", "BusinessClock.IntegrationTests\BusinessClock.IntegrationTests.csproj", "{D474CEA3-D84A-4E22-B940-BDCC58468026}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessClock.UnitTests", "BusinessClock.UnitTests\BusinessClock.UnitTests.csproj", "{F9763FC7-CE6F-4424-97D7-839D404DBFE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D474CEA3-D84A-4E22-B940-BDCC58468026}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D474CEA3-D84A-4E22-B940-BDCC58468026}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D474CEA3-D84A-4E22-B940-BDCC58468026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9763FC7-CE6F-4424-97D7-839D404DBFE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9763FC7-CE6F-4424-97D7-839D404DBFE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9763FC7-CE6F-4424-97D7-839D404DBFE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9763FC7-CE6F-4424-97D7-839D404DBFE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
