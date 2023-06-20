@@ -1,6 +1,9 @@
-﻿
+﻿using Display;
 
 using GeneralUtilities;
+
+
+Greetings.DisplayWelcome();
 
 Console.WriteLine("Enter your first name");
 string firstName = Console.ReadLine();

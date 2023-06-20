@@ -8,7 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hypertheory.GeneralUtilities" Version="1.0.0" />
+    <PackageReference Include="Hypertheory.GeneralUtilities" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Display\Display.csproj" />
   </ItemGroup>
 
 </Project>
