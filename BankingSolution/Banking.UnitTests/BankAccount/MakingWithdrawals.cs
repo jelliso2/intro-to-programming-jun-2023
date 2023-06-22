@@ -1,5 +1,7 @@
 ﻿
 
+using Banking.UnitTests.TestDoubles;
+
 namespace Banking.UnitTests.BankAccount;
 
 public class MakingWithdrawals
@@ -9,7 +11,7 @@ public class MakingWithdrawals
     {
         //Given
         //If account exists and deposit 100
-        Account account = new Account();
+        Account account = new Account(new DummyBonusCalculator());
         decimal openingBalance = account.GetBalance();
         decimal amountToWithdrawal = 50M;
 
