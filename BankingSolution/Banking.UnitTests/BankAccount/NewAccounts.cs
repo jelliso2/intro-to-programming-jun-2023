@@ -11,7 +11,7 @@ public class NewAccounts
     public void NewAccountsHaveCorrectBalance()
     {
         //Given
-        Account account = new Account(new DummyBonusCalculator());
+        Account account = new Account(new Mock<ICanCalculateBonuses>().Object);
 
         //When
         decimal balance = account.GetBalance();
