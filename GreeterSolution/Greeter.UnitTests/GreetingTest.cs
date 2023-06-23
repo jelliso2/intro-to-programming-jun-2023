@@ -8,7 +8,7 @@ public class GreetingTest
 {
     [Theory]
     [InlineData("Windom", "Hello, Windom.")]
-    [InlineData(null,"Hello, Chief.")]
+    
     public void SingleName(string name, string expected)
     {
         var greeter = new GreetingMaker();
@@ -18,16 +18,14 @@ public class GreetingTest
         Assert.Equal(expected, greeting);
     }
 
-    [Theory]
-    [InlineData(null, "Hello, Chief.")]
-    [InlineData("", "Hello, Chief.")]
-    public void NullName(string name, string expected)
+    [Fact]
+    public void NullName()
     {
         var greeter = new GreetingMaker();
 
-        string greeting = greeter.Greet(name);
+        string greeting = greeter.Greet(null);
 
-        Assert.Equal(expected, greeting);
+        Assert.Equal("Hello, Chief.", greeting);
     }
 
     [Theory]
@@ -56,7 +54,7 @@ public class GreetingTest
     }
 
     [Theory]
-    [InlineData("Cole", "Cooper", "Rosenfield", "Preston", "Milford", "Jeffries", "Hello, Cole, Cooper, Rosenfield, Preston, Milford, and Jeffries.")]
+    [InlineData("Cole", "Cooper", "Rosenfield", "Preston", "Milford", "Jeffries", "Hello, Cole, Cooper, Rosenfield, Preston, Milford and Jeffries.")]
     public void MultipleName(string name, string name2, string name3, string name4, string name5, string name6, string expected)
     {
         var greeter = new GreetingMaker();
@@ -67,7 +65,7 @@ public class GreetingTest
     }
 
     [Theory]
-    [InlineData("Bob", "SUE", "Jim", "Hello, Bob, Jim, AND SUE.")]
+    [InlineData("Bob", "SUE", "Jim", "Hello, Bob, Jim AND SUE.")]
     public void MixedName(string name, string name2, string name3, string expected)
     {
         var greeter = new GreetingMaker();

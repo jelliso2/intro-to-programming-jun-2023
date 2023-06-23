@@ -11,127 +11,193 @@ namespace Greeter
         {
         }
 
-        public string Greet(string? name, params string[] allNames)
+        public string Greet( params string?[]? allNames)
         {
-            //Check if all are Upper
-            //else check which ones are upper and store them
-            //
-            
-            string greet = "";
+            string greet = "Hello";
 
-            if (name == null || name == "")
+            if (allNames == null)
             {
                 return "Hello, Chief.";
             }
 
-            
+            var isUppercase = allNames.All(names => names.ToUpper() == names);
+            var someUpper = !isUppercase && allNames.Any(n => n.ToUpperInvariant() == n);
 
-            if (CheckShouting(name, allNames))
+            if (isUppercase)
             {
-                if (allNames.Length == 1)
+                foreach( var name in allNames )
                 {
-                    greet = $"Hello, {name} and {allNames[0]}.";
-                }
-                else if (allNames.Length > 0)
-                {
-                    greet = $"HELLO, {name}";
-                    var nameCount = allNames.Length;
-
-                    foreach (var names in allNames)
+                    if (allNames.Length > 1)
                     {
-                        if (names != allNames[nameCount - 1])
+                        if (name != allNames[allNames.Count() - 1])
                         {
-                            greet += $", {names}";
+                            greet += $", {name} ";
                         }
                         else
                         {
-                            greet += $", and {names}.";
+                            greet += $"and {name}";
                         }
-                    }
-                }
-                else
-                {
-                    greet = $"HELLO, {name}.";
-                }
-
-                greet = greet.ToUpper();
-            }
-            else
-            {
-                if (allNames.Length == 1)
-                {
-                    greet = $"Hello, {name} and {allNames[0]}.";
-                }
-                else if (allNames.Length > 0)
-                {
-                    var upperList = CheckingUpper(name, allNames);
-
-                    greet = $"Hello, {name}";
-                    var nameCount = allNames.Length;
-
-                    if (upperList.Count <= 0)
-                    {
-                        foreach (var names in allNames)
-                        {
-
-                            if (names != allNames[nameCount - 1])
-                            {
-                                greet += $", {names}";
-                            }
-                            else
-                            {
-                                greet += $", and {names}.";
-                            }
-                        }
-
                     }
                     else
                     {
-                        foreach (var names in allNames)
-                        {
-                            if (upperList.Contains(names))
-                            {
-                                continue;
-                            }
-                            if (names == allNames[nameCount-1])
-                            {
-                                greet += $", {names}";
-                            }
+                        greet += $", {name}.";
+                    }
+                    
+                }
 
-                        }
-                        foreach (var names in upperList)
+                return greet.ToUpper();
+            }
+            else if(someUpper)
+            {
+                var upperNames = allNames.Where(names => names.ToUpper() == names).ToList();
+                var lowerNames = allNames.Except(upperNames);
+                
+                    foreach (var name in lowerNames)
+                    {
+                        greet += $", {name}";
+                    }
+                    greet += " AND";
+                    foreach (var name in upperNames)
+                    {
+                        greet += $" {name}.";
+                    }
+                return greet;
+            }
+            else
+            {
+                if (allNames.Length > 1)
+                {
+                    foreach (var name in allNames)
+                    {
+                        if (name != allNames[allNames.Length - 1])
                         {
-                            if (names != upperList[upperList.Count - 1])
-                            {
-                                greet += $", {names}";
-                            }
-                            else
-                            {
-                                greet += $", AND {names}.";
-                            }
+                            greet += $", {name}";
                         }
+                        else
+                        {
+                            greet += $" and {name}.";
+                        }
+
                     }
                 }
                 else
                 {
-                    greet = $"Hello, {name}.";
+                    greet = $"Hello, {allNames[0]}.";
                 }
 
 
+                return greet;
+                
             }
 
-            return greet;
+            #region old code
 
-     
+            //if (CheckShouting(allNames))
+            //{
+            //    if (allNames.Length == 1)
+            //    {
+            //        greet = $"Hello, {name} and {allNames[0]}.";
+            //    }
+            //    else if (allNames.Length > 0)
+            //    {
+            //        greet = $"HELLO, {name}";
+            //        var nameCount = allNames.Length;
+
+            //        foreach (var names in allNames)
+            //        {
+            //            if (names != allNames[nameCount - 1])
+            //            {
+            //                greet += $", {names}";
+            //            }
+            //            else
+            //            {
+            //                greet += $", and {names}.";
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        greet = $"HELLO, {name}.";
+            //    }
+
+            //    greet = greet.ToUpper();
+            //}
+            //else
+            //{
+            //    if (allNames.Length == 1)
+            //    {
+            //        greet = $"Hello, {name} and {allNames[0]}.";
+            //    }
+            //    else if (allNames.Length > 0)
+            //    {
+            //        var upperList = CheckingUpper(name, allNames);
+
+            //        greet = $"Hello, {name}";
+            //        var nameCount = allNames.Length;
+
+            //        if (upperList.Count <= 0)
+            //        {
+            //            foreach (var names in allNames)
+            //            {
+
+            //                if (names != allNames[nameCount - 1])
+            //                {
+            //                    greet += $", {names}";
+            //                }
+            //                else
+            //                {
+            //                    greet += $", and {names}.";
+            //                }
+            //            }
+
+            //        }
+            //        else
+            //        {
+            //            foreach (var names in allNames)
+            //            {
+            //                if (upperList.Contains(names))
+            //                {
+            //                    continue;
+            //                }
+            //                if (names == allNames[nameCount-1])
+            //                {
+            //                    greet += $", {names}";
+            //                }
+
+            //            }
+            //            foreach (var names in upperList)
+            //            {
+            //                if (names != upperList[upperList.Count - 1])
+            //                {
+            //                    greet += $", {names}";
+            //                }
+            //                else
+            //                {
+            //                    greet += $", AND {names}.";
+            //                }
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        greet = $"Hello, {name}.";
+            //    }
+
+
+            //}
+
+            //return greet;
+            #endregion
+
+
         }
 
-        public List<String> CheckingUpper(string name,string[] allNames)
+
+
+        public List<String> CheckingUpper(string[] allNames)
         {
             var allUpper = new List<String>();
-            if(name == name.ToUpper())
-            {
-                allUpper.Add(name);
-            }
+            
             foreach (var names in allNames)
             {
                 if(names == names.ToUpper())
@@ -143,31 +209,24 @@ namespace Greeter
             return allUpper;
         }
 
-        public bool CheckShouting(string? name, params string[] allNames)
+        public bool CheckShouting(params string[] allNames)
         {
-            if (name == name.ToUpper())
+            foreach (var names in allNames)
             {
-                foreach (var names in allNames)
+                if (names != names.ToUpper())
                 {
-                    if (names != names.ToUpper())
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                     break;
                 }
+                else
+                {
+                     return true;
+                }
+            }
                 return true;
 
-            }
-            else
-            {
-                return false;
             }
             
         }
 
        
     }
-}
