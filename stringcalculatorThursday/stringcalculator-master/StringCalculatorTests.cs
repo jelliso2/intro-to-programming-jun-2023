@@ -1,19 +1,15 @@
-﻿namespace StringCalculator;
+﻿using Moq;
 
-using Moq;
+namespace StringCalculator;
 
 public class StringCalculatorTests
 {
     private readonly StringCalculator _calculator;
 
-
-
     public StringCalculatorTests()
     {
-        this._calculator = new StringCalculator(new Mock<ILogger>().Object);
+        this._calculator = new StringCalculator(new Mock<ILogger>().Object, new Mock<IWebService>().Object);
     }
-
-
 
     [Fact]
     public void EmptyStringReturnsZero()
@@ -21,8 +17,6 @@ public class StringCalculatorTests
         var result = _calculator.Add("");
         Assert.Equal(0, result);
     }
-
-
 
     [Theory]
     [InlineData("1", 1)]
@@ -33,8 +27,6 @@ public class StringCalculatorTests
         var result = _calculator.Add(numbers);
         Assert.Equal(expected, result);
     }
-
-
 
     [Theory]
     [InlineData("1,2", 3)]
@@ -47,8 +39,6 @@ public class StringCalculatorTests
         Assert.Equal(expected, result);
     }
 
-
-
     [Theory]
     [InlineData("1,2,3", 6)]
     [InlineData("1,2,3,4,5,6,7,8,9,100", 145)]
@@ -59,8 +49,6 @@ public class StringCalculatorTests
     }
     [Theory]
     [InlineData("1\n2\n3", 6)]
-
-
 
     public void NewLines(string numbers, int expected)
     {
